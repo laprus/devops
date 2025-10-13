@@ -8,9 +8,10 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install Python dependencies
-COPY requirements.txt .
-RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --no-cache-dir -r requirements.txt
+# Install FastAPI and Uvicorn directly (matching pyproject.toml versions)
+RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --no-cache-dir \
+    "fastapi>=0.119.0,<0.120.0" \
+    "uvicorn[standard]>=0.37.0,<0.38.0"
 
 # Copy application code
 COPY app.py .
