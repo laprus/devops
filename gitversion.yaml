@@ -1,0 +1,27 @@
+mode: Mainline
+branches:
+  main:
+    regex: ^main$
+    increment: Minor
+    is-main-branch: true
+    is-release-branch: false
+  feature:
+    regex: ^features?[/-]
+    increment: Minor
+    is-release-branch: false
+  hotfix:
+    regex: ^hotfix(es)?[/-]
+    increment: Patch
+    is-release-branch: false
+ignore:
+  sha: []
+increment: Inherit
+major-version-bump-message: '\+semver:\s?(breaking|major)'
+minor-version-bump-message: '\+semver:\s?(feature|minor)'
+patch-version-bump-message: '\+semver:\s?(fix|patch)'
+no-bump-message: '\+semver:\s?(none|skip)'
+legacy-semver-padding: 4
+build-metadata-padding: 4
+commits-since-version-source-padding: 4
+tag-prefix: 'v'
+format: '{Major}.{Minor}.{Patch}'
