@@ -10,7 +10,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}/fastapi-app
+  IMAGE_NAME: ${{ github.repository }}/devops-app
 
 jobs:
   test:
@@ -124,7 +124,7 @@ jobs:
           ## Release Notes
           
           ### Changes
-          - FastAPI Application v${{ needs.build.outputs.version }}
+          - Devops Application v${{ needs.build.outputs.version }}
           - Docker Image: `${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.build.outputs.version }}`
           
           ### Docker Usage
