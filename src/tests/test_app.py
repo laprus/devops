@@ -9,7 +9,7 @@ def test_healthy_endpoint():
     """Test the /healthy endpoint"""
     response = client.get("/healthy")
     assert response.status_code == 200
-    assert response.json() == {"status": "healthy"}
+    assert response.json() == {"status": "healthy v0.1.5"}
 
 
 def test_generate_endpoint():
