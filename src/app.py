@@ -9,6 +9,10 @@ def healthy():
     """Health check endpoint"""
     return {"status": "healthy"}
 
+@app.get("/version")
+def version():
+    """Version endpoint"""
+    return {"version": "v2"}
 
 @app.get("/generate")
 def generate_color():
