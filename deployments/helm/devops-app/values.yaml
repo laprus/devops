@@ -2,7 +2,8 @@ image:
   repository: ghcr.io/laprus/devops/devops-app
   tag: 0.3.0 # Kargo will update this tag during deployment
   pullPolicy: IfNotPresent
-
+  imagePullSecret: ghcr-secret
+    
 replicaCount: 1
 
 service:
