@@ -1,0 +1,14 @@
+image:
+  repository: ghcr.io/laprus/devops/devops-app
+  tag: 0.3.0 # Kargo will update this tag during deployment
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000 
+  
+deployment:
+  containerPort: 8000
