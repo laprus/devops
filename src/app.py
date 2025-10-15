@@ -12,7 +12,7 @@ def healthy():
 @app.get("/version")
 def version():
     """Version endpoint"""
-    return {"version": "v3"}
+    return {"version": "v4"}
 
 @app.get("/generate")
 def generate_color():
