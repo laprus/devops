@@ -3,6 +3,10 @@ name: Release Pipeline
 on:
   push:
     branches: [ main ]
+    paths:
+      - deployments/helm/**
+      - src/**
+      - .github/workflows/release.yml
   release:
     types: [ published ]
 
