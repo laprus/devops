@@ -96,6 +96,7 @@ jobs:
           type=raw,value=latest,enable={{is_default_branch}}
           type=raw,value=${{ steps.gitversion.outputs.semVer }}
           type=raw,value=v${{ steps.gitversion.outputs.semVer }}
+          DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest,index
 
     - name: Get current date
       id: date
@@ -106,12 +107,9 @@ jobs:
       with:
         context: ./src
         push: true
-        tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
-        build-args: |
-          BUILD_DATE=${{ steps.date.outputs.date }}
-          GIT_SHA=${{ github.sha }}
-          VERSION=${{ steps.gitversion.outputs.semVer }}
+        tags: ${{ steps.meta.outputs.tags }}
+        annotations: ${{ steps.meta.outputs.annotations }}
         
   release:
     needs: build
