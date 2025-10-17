@@ -83,18 +83,31 @@ jobs:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-
+        
+    - name: Get current date
+      id: date
+      run: echo "date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+      
     - name: Extract metadata (tags, labels) for Docker
       id: meta
       uses: docker/metadata-action@v5
       with:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha,prefix={{branch}}-
+          type=raw,value=latest,enable={{is_default_branch}}
+          type=raw,value=v${{ steps.gitversion.outputs.semVer }}
+        labels: |
+          org.opencontainers.image.title=devops-app
+          org.opencontainers.image.description=sample application with using argo and kargo
+          org.opencontainers.image.version=v${{ steps.gitversion.outputs.semVer }}
+          org.opencontainers.image.created=${{ steps.date.outputs.date }}
+          org.opencontainers.image.revision=${{ github.sha }}
+          org.opencontainers.image.source=${{ github.repositoryUrl }}
       env:
         DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest,index
-    
-    - name: Get current date
-      id: date
-      run: echo "date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
     
     - name: Set up Docker Buildx  
       uses: docker/setup-buildx-action@v3
