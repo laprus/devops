@@ -1,5 +1,10 @@
 FROM python:3.12-slim
 
+LABEL org.opencontainers.image.title="Devops App"
+LABEL org.opencontainers.image.revision="${GIT_SHA:-unknown}"
+LABEL org.opencontainers.image.created="${BUILD_DATE:-unknown}"
+LABEL org.opencontainers.image.version="${VERSION:-unknown}"
+
 # Set working directory
 WORKDIR /app
 

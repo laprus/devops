@@ -96,6 +96,10 @@ jobs:
           type=raw,value=latest,enable={{is_default_branch}}
           type=raw,value=${{ steps.gitversion.outputs.semVer }}
           type=raw,value=v${{ steps.gitversion.outputs.semVer }}
+
+    - name: Get current date
+      id: date
+      run: echo "date=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
     
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
@@ -104,6 +108,10 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
+        build-args: |
+          BUILD_DATE=${{ steps.date.outputs.date }}
+          GIT_SHA=${{ github.sha }}
+          VERSION=${{ steps.gitversion.outputs.semVer }}
         
   release:
     needs: build
