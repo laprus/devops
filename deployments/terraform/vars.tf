@@ -15,6 +15,11 @@ variable "environment" {
   type        = string
 }
 
+variable "stack_environment" {
+  description = "Name of the environment from stack variable"
+  type        = string
+}
+
 variable "aws_region" {
   type        = string
   description = "AWS region where the resources will be deployed. Use spacelift context to set this value."
