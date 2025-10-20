@@ -98,7 +98,7 @@ jobs:
           type=ref,event=pr
           type=sha,prefix={{branch}}-
           type=raw,value=latest,enable={{is_default_branch}}
-          type=raw,value=v${{ steps.gitversion.outputs.semVer }}
+          type=raw,value=${{ steps.gitversion.outputs.semVer }}
         labels: |
           org.opencontainers.image.title=devops-app
           org.opencontainers.image.description=sample application with using argo and kargo
@@ -138,12 +138,12 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v${{ needs.build.outputs.version }}
-        release_name: Release v${{ needs.build.outputs.version }}
+        release_name: Release ${{ needs.build.outputs.version }}
         body: |
           ## Release Notes
           
           ### Changes
-          - Devops Application v${{ needs.build.outputs.version }}
+          - Devops Application ${{ needs.build.outputs.version }}
           - Docker Image: `${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.build.outputs.version }}`
           
           ### Docker Usage
