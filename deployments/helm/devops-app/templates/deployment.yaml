@@ -28,11 +28,11 @@ spec:
             httpGet:
               path: /healthy
               port: http
-            initialDelaySeconds: 5
+            initialDelaySeconds: 30
             periodSeconds: 120
           readinessProbe:
             httpGet:
               path: /healthy
               port: http
-            initialDelaySeconds: 120
+            initialDelaySeconds: 30
             periodSeconds: 120
