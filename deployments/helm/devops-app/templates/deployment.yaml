@@ -34,5 +34,5 @@ spec:
             httpGet:
               path: /healthy
               port: http
-            initialDelaySeconds: 600
+            initialDelaySeconds: 150
             periodSeconds: 300
