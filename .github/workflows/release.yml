@@ -102,7 +102,7 @@ jobs:
         labels: |
           org.opencontainers.image.title=devops-app
           org.opencontainers.image.description=sample application with using argo and kargo
-          org.opencontainers.image.version=v${{ steps.gitversion.outputs.semVer }}
+          org.opencontainers.image.version=${{ steps.gitversion.outputs.semVer }}
           org.opencontainers.image.created=${{ steps.date.outputs.date }}
           org.opencontainers.image.revision=${{ github.sha }}
           org.opencontainers.image.source=${{ github.repositoryUrl }}
