@@ -1,4 +1,6 @@
 import random
+from http.client import HTTPException
+
 from fastapi import FastAPI
 
 app = FastAPI(title="DevOps Sample API", version="0.1.0")
@@ -7,7 +9,8 @@ app = FastAPI(title="DevOps Sample API", version="0.1.0")
 @app.get("/healthy")
 def healthy():
     """Health check endpoint"""
-    return {"status": "healthy"}
+    raise HTTPException(status_code=503, detail="Service temporarily unavailable")
+    # return {"status": "healthy"}
 
 @app.get("/version")
 def version():
