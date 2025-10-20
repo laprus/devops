@@ -15,8 +15,8 @@ def healthy():
 @app.get("/version")
 def version():
     """Version endpoint"""
-    # raise HTTPException(status_code=500, detail="Service error")
-    return {"version": "v8.0.3"}
+    raise HTTPException(status_code=500, detail="Service error")
+    # return {"version": "v8.0.3"}
 
 @app.get("/generate")
 def generate_color():
