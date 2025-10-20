@@ -9,13 +9,14 @@ app = FastAPI(title="DevOps Sample API", version="0.1.0")
 @app.get("/healthy")
 def healthy():
     """Health check endpoint"""
-    # raise HTTPException(status_code=503, detail="Service temporarily unavailable")
-    return {"status": "healthy"}
+    raise HTTPException(status_code=503, detail="Service temporarily unavailable")
+    # return {"status": "healthy"}
 
 @app.get("/version")
 def version():
     """Version endpoint"""
-    return {"version": "v5"}
+    raise HTTPException(status_code=500, detail="Service error")
+    # return {"version": "v8"}
 
 @app.get("/generate")
 def generate_color():
