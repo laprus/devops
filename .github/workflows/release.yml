@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - deployments/helm/**
+      - deployments/**
       - src/**
       - .github/workflows/release.yml
   release:
